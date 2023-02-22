@@ -5,7 +5,7 @@ This project contains theoretical as well as implementation in SQL.<br>
 
 ## Pre-requisite
 
-MariadB
+MariadB and Dbeaver-ce
 
 ## Contents
 
