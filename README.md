@@ -140,7 +140,7 @@ Amongst many things that an online site requires the most important is a databas
 
 ### 3.2 Inserting Values
 
-These are some demo values. Full data will be updated in future commits
+These are some demo values.
 
 ```sql
     insert into Cart values('crt1011');
