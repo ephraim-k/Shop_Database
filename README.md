@@ -46,7 +46,7 @@ Amongst many things that an online site requires the most important is a databas
 
 ### 2.2 Entity Relation Diagram
 
-![ER diagram](https://github.com/bhumijgupta/Ecommerce-management-DBMS-project/raw/master/images/new_er.png)
+![ER diagram](https://github.com/ephraim-k/Datenmanagementsystem/blob/main/new_er.png)
 
 ### 2.3 Relational Database Schema
 
