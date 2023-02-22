@@ -223,6 +223,3 @@ These are some demo values. Full data will be updated in future commits
     select sum(quantity_wished * cost * commission/100) total_profit from product p join cart_item c on p.product_id=c.product_id where purchased=’Y’;
 ```
 
-
-> Feel free to fork the repository and contribute to this project.
-You made it till the end. Brofist :punch:!!!
