@@ -1,8 +1,7 @@
-# Management DBMS Project
+# DBMS with SQL Project
 
-As a part of our University Curriculum, we made this project for Database Management Systems (DBMS).<br>
+As a part of our University Curriculum, i have made this project for Database Management Systems (DBMS).<br>
 This project contains theoretical as well as implementation in SQL.<br>
-If you liked the repo do :star: it. 
 
 ## Pre-requisite
 
@@ -55,7 +54,6 @@ Amongst many things that an online site requires the most important is a databas
 
 ## 3. Implementation
 
-You can directly copy and paste all the commands from the text given here into the SQL console to create and insert values into your table.
 
 ### 3.1 Creating Tables
 
@@ -225,132 +223,6 @@ These are some demo values. Full data will be updated in future commits
     select sum(quantity_wished * cost * commission/100) total_profit from product p join cart_item c on p.product_id=c.product_id where purchased=’Y’;
 ```
 
-### 4.2 PL/SQL function
-#### Procedure which returns the type of product with  the cost less than the given cost
-
-```sql
-    create or replace procedure cost_filter(c in number,t in varchar)
-    is
-    cs product.cost%type;
-    ty product.type%type;
-    id product.product_id%type;
-    cursor cf is
-    select product_id,cost,type from product where cost<c and type=t;
-    begin
-    open cf;
-    loop
-    fetch cf into id,cs,ty;
-    exit when cf%notfound;
-    dbms_output.put_line('Product' || id || 'has cost ' || cs || ' and the type is' || ty);
-    end loop;
-    close cf;
-    exception
-    when no_data_found then
-    dbms_output.put_line('Sorry no such products exist');
-    end;
-
-```
-
-#### Function which returns total number of products which a particular seller sells
-
-```sql
-    create or replace function totalProducts(sId in varchar)
-    return number
-    is
-    total number(2):=0;
-    begin
-    select count(*) into total
-    from product
-    where seller_id=sId;
-    return total;
-    end;
-    /
-```
-Function execution:
-```sql
-    declare
-    c number(2);
-    begin
-    c:=totalProducts('sid102');
-    dbms_output.put_line('Total products is : '|| c);
-    end;
-```
-
-#### Procedure which returns the total quantity of product with the given ID
-Procedure with exception handling
-```sql
-    create or replace procedure prod_details(p_id in varchar)
-    is
-    quan number(2);
-    begin
-    select quantity into quan from product where product_id=p_id;
-    exception
-    when no_data_found then
-    dbms_output.put_line('Sorry no such product exist !!');
-    end;
-    /
-```
-### 4.3 Triggers
-#### Trigger that will execute before inserting new customer to database and inserting a new cartId to the cart_items table
-Function to count number of cart items
-```sql
-    create or replace function numCartId(cd in varchar)
-    return number
-    is
-    total number(2):=0;
-    begin
-    select count(*) into total
-    from cart_item
-    where cart_id=cd;
-    return total;
-    end;
-    Trigger
-    Create or replace trigger before_customer
-    before insert
-    on
-    customer
-    for each row
-    declare
-    c varchar(10);
-    n number(2);
-    begin
-    c:= :new.cart_id;
-    n:=numCartId(c);
-    if n>0 then
-    dbms_output.put_line('Sorry');
-    end if;
-    insert into cart values(c);
-    end;
-```
-#### Trigger to update the total amount of user everytime he adds something to payment table
-```sql
-    create or replace function total_cost(cId in varchar)
-    return number
-    is
-    total number(2) :=0;
-    begin
-    select sum(cost) into total from product,cart_item where product.product_id=cart_item.product_id and cart_id=cId;
-    return total;
-    end;
-
-    create or replace trigger before_pay_up
-    before insert
-    on
-    payment
-    for each row
-    declare
-    total number(3);
-    begin
-    total :=total_cost(:new.cart_id);
-    insert into payment values(:new.payment_id,:new.payment_date,:new.payment_type,:new.customer_id,:new.cart_id,total);
-    end;
-```
-## Contributors
-Do check the contributors to follow some awesome projects
-
-- [@bhumijgupta](https://www.github.com/bhumijgupta)
-- [@YashMeh](https://www.github.com/YashMeh)
-- [@roney_b](https://www.github.com)
 
 > Feel free to fork the repository and contribute to this project.
 You made it till the end. Brofist :punch:!!!
