@@ -50,7 +50,7 @@ Amongst many things that an online site requires the most important is a databas
 
 ### 2.3 Relational Database Schema
 
-![Relational diagram](https://github.com/bhumijgupta/Ecommerce-management-DBMS-project/raw/master/images/new_relational.png)
+![Relational diagram](https://github.com/ephraim-k/Datenmanagementsystem/blob/main/new_relational.png)
 
 ## 3. Implementation
 
